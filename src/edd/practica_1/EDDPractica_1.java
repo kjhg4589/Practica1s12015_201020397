@@ -16,6 +16,8 @@ public class EDDPractica_1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //crea una nueva ventada
+        new Principal().setVisible(true);
     }
     
 }

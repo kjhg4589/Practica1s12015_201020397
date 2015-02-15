@@ -6,7 +6,6 @@
 package edd.practica_1;
 
 import java.awt.Color;
-import javafx.scene.image.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -20,7 +19,7 @@ public class informacion extends JLabel{
         
 
         this.setBackground(Color.red);
-        this.setBounds(10, i+10, 300,90);
+        this.setBounds(10, i+10, 450,90);
         this.setVisible(true);
         this.setLayout(null);
         
@@ -32,6 +31,21 @@ public class informacion extends JLabel{
         imagen.setBounds(5, 5, 80, 80);
         imagen.setVisible(true);
         this.add(imagen);
+        
+        JLabel nombre = new JLabel("Nombre: "+Nombre);
+        nombre.setBounds(95, 10, 200, 25);
+        nombre.setVisible(true);
+        this.add(nombre);
+        
+        JLabel tipo = new JLabel("Ataque: "+ataque);
+        tipo.setBounds(95, 45, 200, 25);
+        tipo.setVisible(true);
+        this.add(tipo);
+        
+        JLabel punt = new JLabel("Puntos: "+ String.valueOf(puntos));
+        punt.setBounds(250, 10, 200, 25);
+        punt.setVisible(true);
+        this.add(punt);
     }
     
 }

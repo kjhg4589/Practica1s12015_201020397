@@ -26,7 +26,9 @@ public final class JF_Plantas extends javax.swing.JFrame {
      */
     
     Lista plantas = new Lista();
+    Lista zombis = new Lista();
     Usuarios uPlantas, uZombis;
+    boolean gZombis;
     public JF_Plantas(Usuarios uPlantas, Usuarios uZombis) {
         initComponents();
         this.uPlantas = uPlantas;
@@ -38,6 +40,18 @@ public final class JF_Plantas extends javax.swing.JFrame {
         this.plantas = plantas;
         this.uPlantas = uPlantas;
         this.uZombis = uZombis;
+        this.crearPersonajes();
+        gZombis = false;
+    }
+    
+    public  JF_Plantas(Lista plantas, Lista zombis, Usuarios uPlantas, Usuarios uZombis){
+        initComponents();
+        this.plantas = plantas;
+        this.zombis = zombis;
+        this.uPlantas = uPlantas;
+        this.uZombis = uZombis;
+        this.setTitle("Registro de zombis");
+        gZombis = true;
         this.crearPersonajes();
     }
 
@@ -67,10 +81,25 @@ public final class JF_Plantas extends javax.swing.JFrame {
         });
 
         jButton2.setText("Modificar Planta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar Planta");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Continuar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,21 +132,50 @@ public final class JF_Plantas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        getAccessibleContext().setAccessibleName("Registro de Plantas");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new Agregar(plantas, uPlantas, uZombis).setVisible(true);
+        //boton que agrega plantas o zombis
+        new Agregar(plantas, zombis, uPlantas, uZombis, gZombis).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        //boton que continua a la ventana de zombis
+        if(!gZombis){
+            new JF_Plantas(plantas, zombis, uPlantas, uZombis).setVisible(true);
+        }else{
+            new DMapa(uPlantas, uZombis, plantas, zombis).setVisible(true);
+        }
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     
     public void crearPersonajes(){
-        Nodos temp = plantas.getRaiz();
+        
+        Nodos temp;
+        
+        if(gZombis){
+            temp = zombis.getRaiz();
+        }else{
+            temp = plantas.getRaiz();
+        }
         
         List<JLabel> labels = new ArrayList<>();
-        
+
         int i = 0;
         while(temp != null){
             informacion lbl = new informacion(i*100,temp.getImagen(),temp.getNombre(),temp.getTipo(),temp.getPuntos());

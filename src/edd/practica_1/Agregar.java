@@ -19,13 +19,23 @@ public class Agregar extends javax.swing.JFrame {
      * Creates new form Agregar
      */
     
-    Lista plantas;
+    Lista plantas, zombis;
     Usuarios uPlantas, uZombis;
-    public Agregar(Lista plantas, Usuarios uPlantas, Usuarios uZombis) {
+    boolean gZombis;
+    public Agregar(Lista plantas, Lista zombis, Usuarios uPlantas, Usuarios uZombis, boolean registro) {
         initComponents();
         this.plantas = plantas;
+        this.zombis = zombis;
         this.uPlantas = uPlantas;
         this.uZombis = uZombis;
+        gZombis = registro;
+        if(registro){
+            this.setTitle("Registro de zombis");
+            jLabel1.setText("Registro de zombis");
+            jButton1.setText("Agregar otro zombi");
+        }else{
+            this.setTitle("Registro de plantas");
+        }
     }
 
     /**
@@ -155,12 +165,21 @@ public class Agregar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try{
-            String imagen = jButton1.getText();
-            String nombre = jTextField1.getText();
-            String tipo = jComboBox1.getSelectedItem().toString();
-            int puntos = Integer.parseInt(jTextField2.getText());
-            plantas.insertar(imagen, nombre, tipo, puntos);
-            new JF_Plantas(plantas, uPlantas, uZombis).setVisible(true);
+            if(gZombis){
+                String imagen = jButton1.getText();
+                String nombre = jTextField1.getText();
+                String tipo = jComboBox1.getSelectedItem().toString();
+                int puntos = Integer.parseInt(jTextField2.getText());
+                zombis.insertar(imagen, nombre, tipo, puntos);
+                new JF_Plantas(plantas, zombis, uPlantas, uZombis).setVisible(true);
+            }else{
+                String imagen = jButton1.getText();
+                String nombre = jTextField1.getText();
+                String tipo = jComboBox1.getSelectedItem().toString();
+                int puntos = Integer.parseInt(jTextField2.getText());
+                plantas.insertar(imagen, nombre, tipo, puntos);
+                new JF_Plantas(plantas, uPlantas, uZombis).setVisible(true);
+            }
             this.dispose();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error alguno de los datos ingresados no coincide \n con las caracteristicas porfavor verficar sus datos");
@@ -170,18 +189,27 @@ public class Agregar extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        new JF_Plantas(plantas, uPlantas, uZombis).setVisible(true);
-        this.dispose();
+        if(gZombis){
+            new JF_Plantas(plantas, zombis, uPlantas, uZombis).setVisible(true);
+            this.dispose();
+        }else{
+            new JF_Plantas(plantas, uPlantas, uZombis).setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-            jButton1.setText(chooser.getSelectedFile().toString());
+        try{
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+            chooser.setFileFilter(filter);
+            int returnVal = chooser.showOpenDialog(this);
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                jButton1.setText(chooser.getSelectedFile().toString());
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -5,6 +5,12 @@
  */
 package edd.practica_1;
 
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kevin
@@ -14,8 +20,12 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    Usuarios plantas = new Usuarios();
+    Usuarios zombis = new Usuarios();
+    
     public Principal() {
         initComponents();
+        jp_panel.setLayout(null);
         jp_panel.setVisible(false);
     }
 
@@ -28,31 +38,72 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jp_panel = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbltitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Plantas vs Zombies");
 
-        jp_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jp_panel.setAutoscrolls(true);
+        jButton1.setText("Jugador Plantas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Jugador Zombis");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Comenzar Juego");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setAutoscrolls(true);
 
         jButton4.setText("Aceptar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Eliminar Datos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Crear Campos");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lbltitulo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lbltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Nombre: ");
 
@@ -65,9 +116,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jp_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jp_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbltitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jp_panelLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -92,33 +143,19 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jp_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jp_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jp_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Jugador Plantas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Jugador Zombis");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Comenzar Juego");
+        jScrollPane1.setViewportView(jp_panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,8 +163,8 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jp_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
@@ -144,29 +181,117 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addGap(10, 10, 10)
-                .addComponent(jp_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jScrollPane1.getAccessibleContext().setAccessibleParent(jScrollPane1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        textfields.clear();
         jp_panel.setVisible(true);
+        lbltitulo.setText("PLANTAS");
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
+        jTextField1.setText(null);
+        jTextField2.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        textfields.clear();
         jp_panel.setVisible(true);
+        lbltitulo.setText("ZOMBIS");
         jButton1.setEnabled(false);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
+        jTextField1.setText(null);
+        jTextField2.setText(null);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if(!jTextField1.getText().equals("") && !jTextField2.getText().equals("")){
+            switch (lbltitulo.getText()) {
+                case "PLANTAS":
+                    plantas.insertar(jTextField1.getText());
+                    plantas.insertar(jTextField2.getText());
+                    for (JTextField textfield : textfields) {
+                        plantas.insertar(textfield.getText());
+                    }   plantas.imprimir();
+                    break;
+                case "ZOMBIS":
+                    zombis.insertar(jTextField1.getText());
+                    zombis.insertar(jTextField2.getText());
+                    for (JTextField textfield : textfields) {
+                        zombis.insertar(textfield.getText());
+                    }   zombis.imprimir();
+                    break;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "DEBE PROPORCIONAR LOS PRIMEROS DOS CAMPOS");
+        }
+        for (JLabel label : labels) {
+            jp_panel.remove(label);
+        }
+        for (JTextField textfield : textfields) {
+            jp_panel.remove(textfield);
+        }  
+        campos =1;
+        jp_panel.setVisible(false);
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    private JLabel lbl;
+    private JTextField txt;
+    int campos = 1;//varieble que lleva el control de la cantidad de campos agregados
+    List<JTextField> textfields = new ArrayList<>();
+    List<JLabel> labels = new ArrayList<>();
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        //agrega los nuevos campos para la insercion de datos del usuario
+        lbl = new JLabel("Campo"+campos+":");
+        txt = new JTextField("");
+        lbl.setBounds(12, jLabel3.getY()+(campos*20), 150, 19);
+        txt.setBounds(110, jLabel3.getY()+(campos*20), 209, 19);
+        textfields.add(txt);
+        labels.add(lbl);
+        jp_panel.add(txt);
+        jp_panel.add(lbl);
+        this.validate();
+        this.repaint();
+        campos++;
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        switch (lbltitulo.getText()) {
+            case "PLANTAS":
+                plantas.borrar();
+                break;
+            case "ZOMBIS":
+                zombis.borrar();
+                break;
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if(!plantas.estaVacia() && !plantas.estaVacia()){
+            new JF_Plantas(plantas, zombis).setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "DEBE PROPORCIONAR LOS DATOS DE LOS USUARIOS");
+        }
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -176,11 +301,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jp_panel;
+    private javax.swing.JLabel lbltitulo;
     // End of variables declaration//GEN-END:variables
 }

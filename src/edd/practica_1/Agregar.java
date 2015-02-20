@@ -32,7 +32,6 @@ public class Agregar extends javax.swing.JFrame {
         if(registro){
             this.setTitle("Registro de zombis");
             jLabel1.setText("Registro de zombis");
-            jButton1.setText("Agregar otro zombi");
         }else{
             this.setTitle("Registro de plantas");
         }

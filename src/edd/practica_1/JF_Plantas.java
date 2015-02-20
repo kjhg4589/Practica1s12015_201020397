@@ -5,15 +5,11 @@
  */
 package edd.practica_1;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import sun.security.pkcs11.wrapper.Functions;
 
 /**
  *
@@ -73,21 +69,21 @@ public final class JF_Plantas extends javax.swing.JFrame {
         setTitle("Registro Plantas");
         setPreferredSize(new java.awt.Dimension(550, 585));
 
-        jButton1.setText("Agregar Planta");
+        jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Modificar Planta");
+        jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Eliminar Planta");
+        jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

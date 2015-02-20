@@ -61,6 +61,9 @@ public class DMapa extends javax.swing.JFrame {
         jLabel4.setText("Largo: ");
 
         jButton1.setText("Selccione la Imagen");
+        jButton1.setMaximumSize(new java.awt.Dimension(170, 25));
+        jButton1.setMinimumSize(new java.awt.Dimension(170, 25));
+        jButton1.setPreferredSize(new java.awt.Dimension(170, 25));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -70,6 +73,11 @@ public class DMapa extends javax.swing.JFrame {
         jLabel5.setText("Fondo: ");
 
         jButton2.setText("Iniciar Juego");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +124,7 @@ public class DMapa extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -140,6 +148,17 @@ public class DMapa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try{
+            new Mapa(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()), jButton1.getText(),
+                    uPlantas, Uzombis).setVisible(true);
+            this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Debe ingresar solo numeros");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

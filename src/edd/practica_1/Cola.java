@@ -9,26 +9,20 @@ package edd.practica_1;
  *
  * @author kevin
  */
-public class Lista {
+public class Cola {
     
     private Nodos raiz;
-    private int cantidad;
     
-    public Lista(){
-        this.raiz = null;
-        this.cantidad=0;
+    public Cola(){ 
+        raiz = null; 
     }
 
     public Nodos getRaiz() {
         return raiz;
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
     
     public boolean estaVacia(){
-        return raiz == null;
+        return raiz==null;
     }
     
     public void insertar(String imagen, String nombre, String tipo, int puntos){
@@ -41,6 +35,21 @@ public class Lista {
             }
             temp.setSig(new Nodos(imagen, nombre, tipo, puntos));
         }
-        cantidad++;
     }
+    
+    public Nodos sacar(){
+        Nodos sacar;
+        sacar = this.getRaiz();        
+        raiz = raiz.getSig();
+        return sacar;
+    }
+    
+    public void imprimir(){
+        Nodos temp = this.getRaiz();
+        while(temp!=null){
+            System.out.println(temp.getNombre());
+            temp = temp.getSig();
+        }
+    }
+    
 }

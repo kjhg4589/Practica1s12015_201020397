@@ -1,0 +1,15 @@
+digraph G { 
+subgraph cluster_plantas  { 
+planta0 [label = "lanzador\l/home/kevin/Escritorio/Imagenes Plantas vs Zombis/Gatling-Pea.gif\lDisparo"]; 
+planta1 [label = "mirasol\l/home/kevin/Escritorio/Imagenes Plantas vs Zombis/39Marigold.gif\lDirecto"]; 
+planta2 [label = "lanhielo\l/home/kevin/Escritorio/Imagenes Plantas vs Zombis/Snow-Pea.gif\lDisparo"]; 
+planta0 -> planta1 
+planta1 -> planta2 
+}
+subgraph cluster_zombis { 
+planta1000 [label = "zombi\l/home/kevin/Escritorio/Imagenes Plantas vs Zombis/Zombie.gif\lDirecto"]; 
+planta1001 [label = "michael\l/home/kevin/Escritorio/Imagenes Plantas vs Zombis/Michael-Jackson-Is-ALIVE!!!.gif\lDirecto"]; 
+planta1000 -> planta1001 
+}
+}
+

@@ -6,7 +6,6 @@
 package edd.practica_1;
 
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,13 +21,58 @@ public class Mapa extends javax.swing.JFrame {
      */
     
     private final Tablero tablero;
-    public Mapa(int ancho, int alto, String imagen, Usuarios uPlantas, Usuarios uZombis) {
+    private final Usuarios uPlantas, uZombis;
+    private final Lista cPlantas, cZombis;
+    private final Pila pila;
+    private final Cola cola;
+    private int totalPlantas, totalZombis, cantPlantas, cantZombis;
+    
+    public Mapa(int ancho, int alto, String imagen, Usuarios uPlantas, Usuarios uZombis, Lista cPlantas, Lista cZombis) {
         initComponents();
         tablero = new Tablero(alto, alto, imagen);
         this.add(tablero);
-        
+        this.uPlantas = uPlantas;
+        this.uZombis = uZombis;
+        this.cPlantas = cPlantas;
+        this.cZombis = cZombis;
+        this.pila = new Pila();
+        this.cola = new Cola();
+        this.totalPlantas = Integer.parseInt(uPlantas.getRaiz().getSig().getTexto());
+        this.totalZombis = Integer.parseInt(uZombis.getRaiz().getSig().getTexto());
+        this.cantPlantas = this.cantZombis = 0;
         lblu1.setText(uPlantas.getRaiz().getTexto());
         lblu2.setText(uZombis.getRaiz().getTexto());
+        this.insertarPrimeros();
+    }
+    
+    public void insertarPrimeros(){
+
+        int plantas = cPlantas.getCantidad();
+        int zombis = cZombis.getCantidad();
+  
+        for(int i=0; i<5; i++){
+            int num1 = (int) Math.floor(Math.random()*(plantas-0+1)+0);
+            if(cantPlantas<totalPlantas){
+                Nodos nodo = cPlantas.getRaiz();
+                for(int j=1; j<num1; j++){
+                    nodo = nodo.getSig();
+                }
+                cantPlantas++;
+                cola.insertar(nodo.getImagen(), nodo.getNombre(), nodo.getTipo(), nodo.getPuntos());
+            }
+        }
+        
+        for(int i=0; i<5; i++){
+            int num2 = (int) Math.floor(Math.random()*(zombis-0+1)+0);
+            if(cantZombis<totalZombis){
+                Nodos nodo = cZombis.getRaiz();
+                for(int j=1; j<num2; j++){
+                    nodo = nodo.getSig();
+                }
+                cantZombis++;
+                pila.insertar(nodo.getImagen(), nodo.getNombre(), nodo.getTipo(), nodo.getPuntos());
+            }
+        }
     }
 
     /**
@@ -46,6 +90,7 @@ public class Mapa extends javax.swing.JFrame {
         lblu2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Plantas vs Zombis Guatemalteco");
         setMaximumSize(new java.awt.Dimension(1200, 650));
         setMinimumSize(new java.awt.Dimension(1200, 650));
         setPreferredSize(new java.awt.Dimension(1200, 650));
@@ -95,7 +140,7 @@ public class Mapa extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblu1)))
-                .addContainerGap(585, Short.MAX_VALUE))
+                .addContainerGap(603, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,7 +149,7 @@ public class Mapa extends javax.swing.JFrame {
     private void pausa(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pausa
         // TODO add your handling code here:
         if(KeyEvent.VK_ENTER == evt.getKeyCode()){
-            new Pausa(this, true).setVisible(true);
+            new Pausa(this, true, uPlantas, uZombis, cPlantas, cZombis).setVisible(true);
         }
     }//GEN-LAST:event_pausa
 

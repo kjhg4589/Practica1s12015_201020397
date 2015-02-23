@@ -19,12 +19,12 @@ public class DMapa extends javax.swing.JFrame {
      * Creates new form DMapa
      */
     
-    Usuarios uPlantas, Uzombis;
+    Usuarios uPlantas, uZombis;
     Lista lPlantas, lZombis;
     public DMapa(Usuarios uPlantas, Usuarios uZombis, Lista lPlantas, Lista lZombis) {
         initComponents();
         this.uPlantas = uPlantas;
-        this.Uzombis = uZombis;
+        this.uZombis = uZombis;
         this.lPlantas = lPlantas;
         this.lZombis = lZombis;
     }
@@ -153,7 +153,7 @@ public class DMapa extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             new Mapa(Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()), jButton1.getText(),
-                    uPlantas, Uzombis).setVisible(true);
+            uPlantas, uZombis, lPlantas, lZombis).setVisible(true);
             this.dispose();
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Debe ingresar solo numeros");

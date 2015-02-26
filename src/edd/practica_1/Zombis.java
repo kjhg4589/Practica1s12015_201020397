@@ -21,7 +21,6 @@ public class Zombis extends JLabel{
         this.setLayout(null);
         this.setVisible(true);
         
-        
         int cantidad = zombis.getCantidad();
         int n = 0;
         for(int i=0; i<5; i++){
@@ -40,4 +39,5 @@ public class Zombis extends JLabel{
                 n++;
         }
     }
+
 }

@@ -83,14 +83,14 @@ public class Lista {
             raiz.setPuntos(puntos1);
         }else{
             Nodos aux = this.getRaiz();
-            while(aux!=null && !aux.getSig().getNombre().equals(nombre)){
+            while(aux!=null && !aux.getNombre().equals(parametro)){
                 aux = aux.getSig();
             }
-            if(aux.getSig().getNombre().equals(parametro)){
-                String nombre1 = this.getRaiz().getNombre();
-                String imagen1 = this.getRaiz().getImagen();
-                String tipo1 = this.getRaiz().getTipo();
-                int puntos1 = this.getRaiz().getPuntos();
+            if(aux.getNombre().equals(parametro)){
+                String nombre1 = aux.getNombre();
+                String imagen1 = aux.getImagen();
+                String tipo1 = aux.getTipo();
+                int puntos1 = aux.getPuntos();
                 if(!imagen.equals("")){
                     imagen1 = imagen;
                 }

@@ -6,6 +6,9 @@
 package edd.practica_1;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,6 +32,7 @@ public class Mapa extends javax.swing.JFrame implements Runnable{
     private Plantas lblplantas;
     private Zombis lblzombis;
     private Matriz matriz;
+    private Thread hilo1;
     
     public Mapa(int ancho, int alto, String imagen, Usuarios uPlantas, Usuarios uZombis, Lista cPlantas, Lista cZombis) {
         initComponents();
@@ -50,6 +54,37 @@ public class Mapa extends javax.swing.JFrame implements Runnable{
         matriz.cabeceras();
         this.insertarPrimeros();
         this.agregarPlantas();
+        hilo1 = new Thread(this);
+        hilo1.start();
+    }
+    
+    public void hilo(){
+        int plantas = cPlantas.getCantidad();
+        int zombis = cZombis.getCantidad();
+        
+        int num1 = (int) Math.floor(Math.random()*(plantas-0+1)+0);
+        if(cantPlantas<totalPlantas){
+            Nodos nodo = cPlantas.getRaiz();
+            for(int j=1; j<num1; j++){
+                nodo = nodo.getSig();
+            }
+            cantPlantas++;
+            cola.insertar(nodo.getImagen(), nodo.getNombre(), nodo.getTipo(), nodo.getPuntos());
+        }
+        
+        int num2 = (int) Math.floor(Math.random()*(zombis-0+1)+0);
+        if(cantZombis<totalZombis){
+            Nodos nodo = cZombis.getRaiz();
+            for(int j=1; j<num2; j++){
+                nodo = nodo.getSig();
+            }
+            cantZombis++;
+            pila.insertar(nodo.getImagen(), nodo.getNombre(), nodo.getTipo(), nodo.getPuntos());
+        }
+        this.remove(lblplantas);
+        this.remove(lblzombis);
+        this.agregarPlantas();
+        this.repaint();
     }
     
     public void insertarPrimeros(){
@@ -180,6 +215,13 @@ public class Mapa extends javax.swing.JFrame implements Runnable{
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        while(true){
+            this.hilo();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

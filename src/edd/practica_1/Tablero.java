@@ -18,10 +18,10 @@ public class Tablero extends JLabel{
         
         ImageIcon a = new ImageIcon(imagen);
         java.awt.Image b = a.getImage();
-        ImageIcon c = new ImageIcon(b.getScaledInstance(875, 590, java.awt.Image.SCALE_DEFAULT));
+        ImageIcon c = new ImageIcon(b.getScaledInstance(895, 590, java.awt.Image.SCALE_DEFAULT));
         
         this.setIcon(c);
-        this.setBounds(150, 10, 875, 590);
+        this.setBounds(140, 10, 875, 590);
         this.setVisible(true);
         this.setLayout(null);
     }

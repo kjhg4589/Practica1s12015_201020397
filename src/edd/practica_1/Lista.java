@@ -43,4 +43,71 @@ public class Lista {
         }
         cantidad++;
     }
+    
+    public void eliminar(String nombre){
+        if(this.getRaiz().getNombre().equals(nombre)){
+            raiz = raiz.getSig();
+        }else{
+            Nodos aux = this.getRaiz();
+            while(aux!=null && !aux.getSig().getNombre().equals(nombre)){
+                aux = aux.getSig();
+            }
+            if(aux.getSig().getNombre().equals(nombre)){
+                aux.setSig(aux.getSig().getSig());
+            }
+        }
+    }
+    
+    public void modificar(String parametro, String imagen, String nombre, String tipo, int puntos){        
+        
+        if(this.getRaiz().getNombre().equals(parametro)){
+            String nombre1 = this.getRaiz().getNombre();
+            String imagen1 = this.getRaiz().getImagen();
+            String tipo1 = this.getRaiz().getTipo();
+            int puntos1 = this.getRaiz().getPuntos();
+            if(!imagen.equals("")){
+                imagen1 = imagen;
+            }
+            if(!nombre.equals("")){
+                nombre1 = nombre;
+            }
+            if(!tipo.equals("")){
+                tipo1 = tipo;
+            }
+            if(puntos!=0){
+                puntos1 = puntos;
+            } 
+            raiz.setImagen(imagen1);
+            raiz.setNombre(nombre1);
+            raiz.setTipo(tipo1);
+            raiz.setPuntos(puntos1);
+        }else{
+            Nodos aux = this.getRaiz();
+            while(aux!=null && !aux.getSig().getNombre().equals(nombre)){
+                aux = aux.getSig();
+            }
+            if(aux.getSig().getNombre().equals(parametro)){
+                String nombre1 = this.getRaiz().getNombre();
+                String imagen1 = this.getRaiz().getImagen();
+                String tipo1 = this.getRaiz().getTipo();
+                int puntos1 = this.getRaiz().getPuntos();
+                if(!imagen.equals("")){
+                    imagen1 = imagen;
+                }
+                if(!nombre.equals("")){
+                    nombre1 = nombre;
+                }
+                if(!tipo.equals("")){
+                    tipo1 = tipo;
+                }
+                if(puntos!=0){
+                    puntos1 = puntos;
+                } 
+                aux.setImagen(imagen1);
+                aux.setNombre(nombre1);
+                aux.setTipo(tipo1);
+                aux.setPuntos(puntos1);;
+            }
+        }
+    }
 }

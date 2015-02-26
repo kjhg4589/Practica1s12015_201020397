@@ -120,16 +120,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cola Plantas "/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pila Plantas"/>
+        <Property name="text" type="java.lang.String" value="Pila Zombis"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton8">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tablero"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

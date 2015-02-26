@@ -23,13 +23,20 @@ public class Pausa extends javax.swing.JDialog {
     private final Graphviz graphviz = new Graphviz();
     private final Usuarios uPlantas, uZombis;
     private final Lista cPlantas, cZombis;
-    public Pausa(java.awt.Frame parent, boolean modal, Usuarios uPlantas, Usuarios uZombis, Lista cPlantas, Lista cZombis) {
+    private final Pila zombis;
+    private final Cola plantas;
+    private final Matriz matriz;
+    public Pausa(java.awt.Frame parent, boolean modal, Usuarios uPlantas, Usuarios uZombis, Lista cPlantas, Lista cZombis,
+                  Cola plantas, Pila zombis, Matriz matriz) {
         super(parent, modal);
         this.padre = parent;
         this.uPlantas = uPlantas;
         this.uZombis = uZombis;
         this.cPlantas = cPlantas;
         this.cZombis = cZombis;
+        this.plantas = plantas;
+        this.zombis = zombis;
+        this.matriz = matriz;
         initComponents();
     }
 
@@ -94,10 +101,25 @@ public class Pausa extends javax.swing.JDialog {
         });
 
         jButton6.setText("Cola Plantas ");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Pila Plantas");
+        jButton7.setText("Pila Zombis");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Tablero");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,13 +179,13 @@ public class Pausa extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        graphviz.CatPlantas(cPlantas);
+        graphviz.CatPlantas(cPlantas.getRaiz());
         //new Reporte(padre, true, graphviz.getDireccion()).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        graphviz.CatPlantas(cZombis);
+        graphviz.CatPlantas(cZombis.getRaiz());
         //new Reporte(padre, true, graphviz.getDireccion()).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -172,6 +194,21 @@ public class Pausa extends javax.swing.JDialog {
         graphviz.AmbosCat(cPlantas, cZombis);
         //new Reporte(padre, true, graphviz.getDireccion()).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        graphviz.CatPlantas(plantas.getRaiz());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        graphviz.CatPlantas(zombis.getRaiz());
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        graphviz.dibujarMatriz(matriz.getFila(), matriz.getCabecera());
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

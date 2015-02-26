@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
  *
  * @author kevin
  */
-public class Mapa extends javax.swing.JFrame {
+public class Mapa extends javax.swing.JFrame implements Runnable{
 
     /**
      * Creates new form Mapa
@@ -26,6 +26,9 @@ public class Mapa extends javax.swing.JFrame {
     private final Pila pila;
     private final Cola cola;
     private int totalPlantas, totalZombis, cantPlantas, cantZombis;
+    private Plantas lblplantas;
+    private Zombis lblzombis;
+    private Matriz matriz;
     
     public Mapa(int ancho, int alto, String imagen, Usuarios uPlantas, Usuarios uZombis, Lista cPlantas, Lista cZombis) {
         initComponents();
@@ -42,7 +45,11 @@ public class Mapa extends javax.swing.JFrame {
         this.cantPlantas = this.cantZombis = 0;
         lblu1.setText(uPlantas.getRaiz().getTexto());
         lblu2.setText(uZombis.getRaiz().getTexto());
+        this.matriz = new Matriz();
+        matriz.insertarColumnas(ancho, alto);
+        matriz.cabeceras();
         this.insertarPrimeros();
+        this.agregarPlantas();
     }
     
     public void insertarPrimeros(){
@@ -73,6 +80,13 @@ public class Mapa extends javax.swing.JFrame {
                 pila.insertar(nodo.getImagen(), nodo.getNombre(), nodo.getTipo(), nodo.getPuntos());
             }
         }
+    }
+    
+    public void agregarPlantas(){
+        lblplantas = new Plantas(cola);
+        this.add(lblplantas);
+        lblzombis = new Zombis(pila);
+        this.add(lblzombis);
     }
 
     /**
@@ -140,7 +154,7 @@ public class Mapa extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblu1)))
-                .addContainerGap(603, Short.MAX_VALUE))
+                .addContainerGap(597, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,7 +163,7 @@ public class Mapa extends javax.swing.JFrame {
     private void pausa(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pausa
         // TODO add your handling code here:
         if(KeyEvent.VK_ENTER == evt.getKeyCode()){
-            new Pausa(this, true, uPlantas, uZombis, cPlantas, cZombis).setVisible(true);
+            new Pausa(this, true, uPlantas, uZombis, cPlantas, cZombis, cola, pila, matriz).setVisible(true);
         }
     }//GEN-LAST:event_pausa
 
@@ -163,4 +177,9 @@ public class Mapa extends javax.swing.JFrame {
     private javax.swing.JLabel lblu1;
     private javax.swing.JLabel lblu2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -12,9 +12,15 @@ package edd.practica_1;
 public class Pila {
         
     private Nodos raiz;
+    private int cantidad;
     
     public Pila(){ 
         raiz = null; 
+        cantidad = 0;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
     public Nodos getRaiz() {
@@ -35,6 +41,7 @@ public class Pila {
             }
             temp.setSig(new Nodos(imagen, nombre, tipo, puntos));
         }
+        cantidad++;
     }
     
     public Nodos sacar(){
@@ -57,6 +64,7 @@ public class Pila {
                 temp.setSig(null);
             }
         }
+        cantidad--;
         return sacar;
     }
     
